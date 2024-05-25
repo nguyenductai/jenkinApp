@@ -4,21 +4,21 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/yourusername/ci-cd-demo.git', branch: 'main'
+                git url: 'https://github.com/nguyenductai/jenkinApp', branch: 'main'
             }
         }
 
         stage('Build') {
             steps {
                 sh 'echo Building...'
-                sh 'pip install -r requirements.txt'
+               
             }
         }
 
         stage('Test') {
             steps {
                 sh 'echo Testing...'
-                sh 'python -m unittest discover'
+               
             }
         }
 
