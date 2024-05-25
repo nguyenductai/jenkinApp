@@ -15,6 +15,7 @@ pipeline {
          stage('Merge All Pull Requests') {
     steps {
           sh 'echo Merge All Pull ...'
+    }
         
 }
         
