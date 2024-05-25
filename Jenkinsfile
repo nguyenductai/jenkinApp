@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Merge All Pull Requests') {
     steps {
-        withCredentials([string(credentialsId: '', variable: 'GITHUB_TOKEN')]) {
+        withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')]) {
             sh 'echo Merging all open Pull Requests...'
             sh '''
             # Đăng nhập GitHub CLI
