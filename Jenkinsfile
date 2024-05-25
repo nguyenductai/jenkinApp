@@ -12,6 +12,27 @@ pipeline {
                 git url: 'https://github.com/nguyenductai/jenkinApp', branch: 'main'
             }
         }
+         stage('Merge All Pull Requests') {
+           steps {
+                withCredentials([string(credentialsId: '', variable: 'GITHUB_TOKEN')]) {
+                    sh 'echo Merging all open Pull Requests...'
+                    sh '''
+                    # Đăng nhập GitHub CLI
+                    echo $GITHUB_TOKEN | gh auth login --with-token
+
+                    # Lấy danh sách tất cả các Pull Requests đang mở
+                    PRS=$(gh pr list --state open --json number -q '.[].number')
+
+                    # Hợp nhất từng Pull Request
+                    for PR in $PRS; do
+                        echo "Merging PR #$PR..."
+                        gh pr merge --squash --delete-branch $PR
+                    done
+                    '''
+                }
+            }
+        }
+        
 
         stage('Build') {
             steps {
