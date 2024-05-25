@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+     environment {
+        GITHUB_TOKEN = credentials('github-token') // Use the actual ID of your GitHub token
+       // Use the actual ID of your Heroku API key
+    }
+
     stages {
         stage('Checkout') {
             steps {
